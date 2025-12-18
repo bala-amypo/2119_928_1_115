@@ -19,8 +19,24 @@ public class ShipmentRService {
         return repository.save(shipment);
     }
 
-    public ShipmentRSEntity getById(Longzym(Long id) {
+    public ShipmentRSEntity getById(Long id) {
         return repository.findById(id).orElse(null);
     }
 
-    public ShipmentRSEntity getByCode(St
+    public ShipmentRSEntity getByCode(String code) {
+        return repository.findByShipmentCode(code);
+    }
+
+    public List<ShipmentRSEntity> getAll() {
+        return repository.findAll();
+    }
+
+    public ShipmentRSEntity updateStatus(Long id, String status) {
+        ShipmentRSEntity shipment = getById(id);
+        if (shipment != null) {
+            shipment.setStatus(status);
+            return repository.save(shipment);
+        }
+        return null;
+    }
+}
