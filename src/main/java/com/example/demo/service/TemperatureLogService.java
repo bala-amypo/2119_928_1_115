@@ -1,33 +1,34 @@
 package com.example.demo.service;
 
-import com.example.demo.entity.TemperatureLSEntity;
-import com.example.demo.repository.TemperatureSLRepository;
+import com.example.demo.entity.TemperatureSensorLog;
+import com.example.demo.repository.TemperatureSensorLogRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class TemperatureRSSService {
+public class TemperatureLogService {
 
-    private final TemperatureSLRepository repository;
+    private final TemperatureSensorLogRepository repository;
 
-    public TemperatureRSSService(TemperatureSLRepository repository) {
+    // REQUIRED constructor signature
+    public TemperatureLogService(TemperatureSensorLogRepository repository) {
         this.repository = repository;
     }
 
-    public TemperatureLSEntity record(TemperatureLSEntity log) {
+    public TemperatureSensorLog recordLog(TemperatureSensorLog log) {
         return repository.save(log);
     }
 
-    public List<TemperatureLSEntity> getByShipment(Long shipmentId) {
+    public List<TemperatureSensorLog> getLogsByShipment(Long shipmentId) {
         return repository.findByShipmentId(shipmentId);
     }
 
-    public TemperatureLSEntity getById(Long id) {
+    public TemperatureSensorLog getLogById(Long id) {
         return repository.findById(id).orElse(null);
     }
 
-    public List<TemperatureLSEntity> getAll() {
+    public List<TemperatureSensorLog> getAllLogs() {
         return repository.findAll();
     }
 }

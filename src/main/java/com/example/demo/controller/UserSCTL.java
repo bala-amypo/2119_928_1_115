@@ -1,14 +1,5 @@
-package com.example.demo.controller;
-
-import com.example.demo.dto.LoginRequest;
-import com.example.demo.dto.RegisterRequest;
-import com.example.demo.service.UserService;
-import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.web.bind.annotation.*;
-
 @RestController
 @RequestMapping("/auth")
-@Tag(name = "Authentication")
 public class UserSCTL {
 
     private final UserService userService;
@@ -18,13 +9,12 @@ public class UserSCTL {
     }
 
     @PostMapping("/register")
-    public String register(@RequestBody RegisterRequest request) {
-        userService.register(request);
-        return "User registered successfully";
+    public User register(@RequestBody RegisterRequest request) {
+        return userService.registerUser(request);
     }
 
     @PostMapping("/login")
-    public String login(@RequestBody LoginRequest request) {
+    public User login(@RequestBody LoginRequest request) {
         return userService.login(request);
     }
 }
