@@ -2,36 +2,37 @@ package com.example.demo.service;
 
 import com.example.demo.dto.LoginRequest;
 import com.example.demo.dto.RegisterRequest;
-import com.example.demo.entity.UserSEntity;
-import com.example.demo.repository.Userrepository;
+import com.example.demo.entity.User;
+import com.example.demo.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
 
-    private final Userrepository repository;
+    private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public UserService(Userrepository repository,
+    // REQUIRED constructor order
+    public UserService(UserRepository userRepository,
                        PasswordEncoder passwordEncoder) {
-        this.repository = repository;
+        this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
-    public UserSEntity register(RegisterRequest request) {
-        UserSEntity user = new UserSEntity();
+    public User registerUser(RegisterRequest request) {
+        User user = new User();
         user.setFullName(request.getFullName());
         user.setEmail(request.getEmail());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
-        return repository.save(user);
+        return userRepository.save(user);
     }
 
-    public UserSEntity findByEmail(String email) {
-        return repository.findByEmail(email);
+    public User login(LoginRequest request) {
+        return userRepository.findByEmail(request.getEmail());
     }
 
-    public String login(LoginRequest request) {
-        return "JWT_TOKEN"; // actual JWT added later
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email);
     }
 }
