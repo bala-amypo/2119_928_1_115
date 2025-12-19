@@ -18,7 +18,7 @@ public class AlertsCTL {
         this.alertService = alertService;
     }
 
-    @PostMapping("/")
+    @PostMapping
     public AlertsEntity triggerAlert(@RequestBody AlertsEntity alert) {
         return alertService.triggerAlert(alert);
     }
@@ -38,7 +38,7 @@ public class AlertsCTL {
         return alertService.getAlertById(id);
     }
 
-    @GetMapping("/")
+    @GetMapping
     public List<AlertsEntity> getAllAlerts() {
         return alertService.getAllAlerts();
     }
