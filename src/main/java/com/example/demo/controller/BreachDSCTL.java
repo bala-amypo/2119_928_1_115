@@ -17,24 +17,27 @@ public class BreachDSCTL {
         this.breachDSService = breachDSService;
     }
 
+    // CREATE breach
     @PostMapping
-    public BreachDSEntity create(@RequestBody BreachDSEntity breach) {
-        return breachDSService.save(breach);
+    public BreachDSEntity createBreach(@RequestBody BreachDSEntity breach) {
+        return breachDSService.logBreach(breach);
     }
 
+    // GET all breaches
     @GetMapping
-    public List<BreachDSEntity> getAll() {
+    public List<BreachDSEntity> getAllBreaches() {
         return breachDSService.getAll();
     }
 
-    @GetMapping("/{id}")
-    public BreachDSEntity getById(@PathVariable Long id) {
-        return breachDSService.getById(id);
+    // GET breaches by shipmentId
+    @GetMapping("/shipment/{shipmentId}")
+    public List<BreachDSEntity> getByShipment(@PathVariable Long shipmentId) {
+        return breachDSService.getByShipment(shipmentId);
     }
 
-    @DeleteMapping("/{id}")
-    public String delete(@PathVariable Long id) {
-        breachDSService.delete(id);
-        return "Breach deleted successfully";
+    // RESOLVE breach
+    @PutMapping("/resolve/{id}")
+    public BreachDSEntity resolveBreach(@PathVariable Long id) {
+        return breachDSService.resolve(id);
     }
 }
