@@ -2,47 +2,39 @@ package com.example.demo.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import com.example.demo.entity.Breach;
-import com.example.demo.service.BreachService;
+import com.example.demo.entity.BreachDSEntity;
+import com.example.demo.service.BreachDSService;
 
 @RestController
-@RequestMapping("/breach")
-public class BreachController {
+@RequestMapping("/api/breaches")
+public class BreachDSCTL {
 
-    @Autowired
-    private BreachService breachService;
+    private final BreachDSService breachDSService;
 
-    // CREATE
-    @PostMapping("/add")
-    public Breach addBreach(@RequestBody Breach breach) {
-        return breachService.saveBreach(breach);
+    public BreachDSCTL(BreachDSService breachDSService) {
+        this.breachDSService = breachDSService;
     }
 
-    // READ ALL
-    @GetMapping("/all")
-    public List<Breach> getAllBreaches() {
-        return breachService.getAllBreaches();
+    @PostMapping
+    public BreachDSEntity create(@RequestBody BreachDSEntity breach) {
+        return breachDSService.save(breach);
     }
 
-    // READ BY ID
+    @GetMapping
+    public List<BreachDSEntity> getAll() {
+        return breachDSService.getAll();
+    }
+
     @GetMapping("/{id}")
-    public Breach getBreachById(@PathVariable int id) {
-        return breachService.getBreachById(id);
+    public BreachDSEntity getById(@PathVariable Long id) {
+        return breachDSService.getById(id);
     }
 
-    // UPDATE
-    @PutMapping("/update/{id}")
-    public Breach updateBreach(
-            @PathVariable int id,
-            @RequestBody Breach breach) {
-        return breachService.updateBreach(id, breach);
+    @DeleteMapping("/{id}")
+    public String delete(@PathVariable Long id) {
+        breachDSService.delete(id);
+        return "Breach deleted successfully";
     }
-
-    // DELETE
-    @DeleteMapping("/delete/{id}")
-    public String deleteBreach(@PathVariable int id) {
-        breachService.deleteBreach(id);
-        return "Breach deleted succes
+}
