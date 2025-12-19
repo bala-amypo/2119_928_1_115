@@ -13,7 +13,6 @@ public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
-    // REQUIRED constructor order
     public UserService(UserRepository userRepository,
                        PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
@@ -21,18 +20,20 @@ public class UserService {
     }
 
     public User registerUser(RegisterRequest request) {
+
+        if (userRepository.existsByEmail(request.getEmail())) {
+            throw new RuntimeException("Email already exists");
+        }
+
         User user = new User();
         user.setFullName(request.getFullName());
         user.setEmail(request.getEmail());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
+
         return userRepository.save(user);
     }
 
     public User login(LoginRequest request) {
         return userRepository.findByEmail(request.getEmail());
-    }
-
-    public User findByEmail(String email) {
-        return userRepository.findByEmail(email);
     }
 }

@@ -1,3 +1,11 @@
+package com.example.demo.controller;
+
+import com.example.demo.dto.LoginRequest;
+import com.example.demo.dto.RegisterRequest;
+import com.example.demo.entity.User;
+import com.example.demo.service.UserService;
+import org.springframework.web.bind.annotation.*;
+
 @RestController
 @RequestMapping("/auth")
 public class UserSCTL {
