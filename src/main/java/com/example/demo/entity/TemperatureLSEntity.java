@@ -21,39 +21,13 @@ public class TemperatureLSEntity {
         this.recordedAt = LocalDateTime.now();
     }
 
-    public Long getId() {
-        return id;
-    }
+    public Long getId() { return id; }
+    public Long getShipmentId() { return shipmentId; }
+    public Double getTemperatureValue() { return temperatureValue; }
+    public String getLocation() { return location; }
+    public LocalDateTime getRecordedAt() { return recordedAt; }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getShipmentId() {
-        return shipmentId;
-    }
-
-    public void setShipmentId(Long shipmentId) {
-        this.shipmentId = shipmentId;
-    }
-
-    public Double getTemperatureValue() {
-        return temperatureValue;
-    }
-
-    public void setTemperatureValue(Double temperatureValue) {
-        this.temperatureValue = temperatureValue;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public LocalDateTime getRecordedAt() {
-        return recordedAt;
-    }
+    public void setShipmentId(Long shipmentId) { this.shipmentId = shipmentId; }
+    public void setTemperatureValue(Double temperatureValue) { this.temperatureValue = temperatureValue; }
+    public void setLocation(String location) { this.location = location; }
 }
