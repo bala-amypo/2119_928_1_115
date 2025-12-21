@@ -1,11 +1,3 @@
-package com.example.demo.service;
-
-import com.example.demo.entity.ShipmentRSEntity;
-import com.example.demo.repository.ShipmentRepository;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
-
 @Service
 public class ShipmentRService {
 
@@ -20,7 +12,8 @@ public class ShipmentRService {
     }
 
     public ShipmentRSEntity getById(Long id) {
-        return repository.findById(id).orElse(null);
+        return repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Shipment not found"));
     }
 
     public ShipmentRSEntity getByCode(String code) {
@@ -33,10 +26,7 @@ public class ShipmentRService {
 
     public ShipmentRSEntity updateStatus(Long id, String status) {
         ShipmentRSEntity shipment = getById(id);
-        if (shipment != null) {
-            shipment.setStatus(status);
-            return repository.save(shipment);
-        }
-        return null;
+        shipment.setStatus(status);
+        return repository.save(shipment);
     }
 }
