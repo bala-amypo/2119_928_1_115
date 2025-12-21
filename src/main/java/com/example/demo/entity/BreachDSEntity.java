@@ -79,8 +79,12 @@ public class BreachDSEntity {
     }
 
     public Boolean getResolved() {
-        return resolved;
-    }
+    return resolved;
+}
+
+public void setResolved(Boolean resolved) {
+    this.resolved = resolved;
+}
 
     public LocalDateTime getDetectedAt() {
         return detectedAt;
