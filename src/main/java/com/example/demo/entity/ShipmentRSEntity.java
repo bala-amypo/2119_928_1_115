@@ -4,9 +4,10 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "shipments", uniqueConstraints = {
-        @UniqueConstraint(columnNames = "shipmentCode")
-})
+@Table(
+        name = "shipments",
+        uniqueConstraints = @UniqueConstraint(columnNames = "shipmentCode")
+)
 public class ShipmentRSEntity {
 
     @Id
@@ -28,10 +29,6 @@ public class ShipmentRSEntity {
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getShipmentCode() {

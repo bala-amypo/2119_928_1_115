@@ -7,18 +7,12 @@ import java.time.LocalDateTime;
 @Table(name = "temperature_logs")
 public class TemperatureLSEntity {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "shipment_id", nullable = false)
-    private ShipmentRSEntity shipment;
-
-
     private Long shipmentId;
+    private String sensorId;
     private Double temperatureValue;
     private String location;
     private LocalDateTime recordedAt;
@@ -28,13 +22,43 @@ public class TemperatureLSEntity {
         this.recordedAt = LocalDateTime.now();
     }
 
-    public Long getId() { return id; }
-    public Long getShipmentId() { return shipmentId; }
-    public Double getTemperatureValue() { return temperatureValue; }
-    public String getLocation() { return location; }
-    public LocalDateTime getRecordedAt() { return recordedAt; }
+    public Long getId() {
+        return id;
+    }
 
-    public void setShipmentId(Long shipmentId) { this.shipmentId = shipmentId; }
-    public void setTemperatureValue(Double temperatureValue) { this.temperatureValue = temperatureValue; }
-    public void setLocation(String location) { this.location = location; }
+    public Long getShipmentId() {
+        return shipmentId;
+    }
+
+    public void setShipmentId(Long shipmentId) {
+        this.shipmentId = shipmentId;
+    }
+
+    public String getSensorId() {
+        return sensorId;
+    }
+
+    public void setSensorId(String sensorId) {
+        this.sensorId = sensorId;
+    }
+
+    public Double getTemperatureValue() {
+        return temperatureValue;
+    }
+
+    public void setTemperatureValue(Double temperatureValue) {
+        this.temperatureValue = temperatureValue;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public LocalDateTime getRecordedAt() {
+        return recordedAt;
+    }
 }

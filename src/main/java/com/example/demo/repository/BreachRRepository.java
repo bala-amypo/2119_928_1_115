@@ -8,6 +8,5 @@ import java.util.List;
 public interface BreachRRepository
         extends JpaRepository<BreachDSEntity, Long> {
 
-    List<BreachDSEntity> findByShipment_Id(Long shipmentId);
+    List<BreachDSEntity> findByShipmentId(Long shipmentId);
 }
-

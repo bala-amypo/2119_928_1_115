@@ -12,6 +12,8 @@ public class AlertsEntity {
     private Long id;
 
     private Long shipmentId;
+    private Long breachId;
+    private String alertType;
     private String message;
     private Boolean acknowledged;
     private LocalDateTime sentAt;
@@ -26,16 +28,28 @@ public class AlertsEntity {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public Long getShipmentId() {
         return shipmentId;
     }
 
     public void setShipmentId(Long shipmentId) {
         this.shipmentId = shipmentId;
+    }
+
+    public Long getBreachId() {
+        return breachId;
+    }
+
+    public void setBreachId(Long breachId) {
+        this.breachId = breachId;
+    }
+
+    public String getAlertType() {
+        return alertType;
+    }
+
+    public void setAlertType(String alertType) {
+        this.alertType = alertType;
     }
 
     public String getMessage() {
@@ -48,10 +62,6 @@ public class AlertsEntity {
 
     public Boolean getAcknowledged() {
         return acknowledged;
-    }
-
-    public void setAcknowledged(Boolean acknowledged) {
-        this.acknowledged = acknowledged;
     }
 
     public LocalDateTime getSentAt() {
