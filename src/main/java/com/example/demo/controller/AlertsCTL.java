@@ -24,22 +24,22 @@ public class AlertsCTL {
     }
 
     @PutMapping("/{id}/acknowledge")
-    public AlertsEntity acknowledgeAlert(@PathVariable Long id) {
+    public AlertsEntity acknowledge(@PathVariable Long id) {
         return alertService.acknowledgeAlert(id);
     }
 
     @GetMapping("/shipment/{shipmentId}")
-    public List<AlertsEntity> getAlertsByShipment(@PathVariable Long shipmentId) {
+    public List<AlertsEntity> getByShipment(@PathVariable Long shipmentId) {
         return alertService.getAlertsByShipment(shipmentId);
     }
 
     @GetMapping("/{id}")
-    public AlertsEntity getAlertById(@PathVariable Long id) {
+    public AlertsEntity getById(@PathVariable Long id) {
         return alertService.getAlertById(id);
     }
 
     @GetMapping
-    public List<AlertsEntity> getAllAlerts() {
+    public List<AlertsEntity> getAll() {
         return alertService.getAllAlerts();
     }
 }
