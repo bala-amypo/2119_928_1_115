@@ -7,9 +7,16 @@ import java.time.LocalDateTime;
 @Table(name = "temperature_logs")
 public class TemperatureLSEntity {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "shipment_id", nullable = false)
+    private ShipmentRSEntity shipment;
+
 
     private Long shipmentId;
     private Double temperatureValue;
