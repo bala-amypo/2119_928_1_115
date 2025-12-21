@@ -64,7 +64,12 @@ public class AlertsEntity {
         return acknowledged;
     }
 
+    public void setAcknowledged(Boolean acknowledged) {
+        this.acknowledged = acknowledged;
+    }
+
     public LocalDateTime getSentAt() {
         return sentAt;
     }
 }
+
