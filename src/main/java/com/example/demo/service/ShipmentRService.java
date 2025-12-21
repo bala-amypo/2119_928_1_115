@@ -1,3 +1,11 @@
+package com.example.demo.service;
+
+import com.example.demo.entity.ShipmentRSEntity;
+import com.example.demo.repository.ShipmentRepository;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
 @Service
 public class ShipmentRService {
 
@@ -13,7 +21,8 @@ public class ShipmentRService {
 
     public ShipmentRSEntity getById(Long id) {
         return repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Shipment not found"));
+                .orElseThrow(() ->
+                        new RuntimeException("Shipment not found"));
     }
 
     public ShipmentRSEntity getByCode(String code) {

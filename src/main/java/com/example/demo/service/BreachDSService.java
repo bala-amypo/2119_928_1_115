@@ -1,30 +1,26 @@
+package com.example.demo.service;
+
+import com.example.demo.entity.BreachDSEntity;
+import com.example.demo.repository.BreachRRepository;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
 @Service
 public class BreachDSService {
 
     private final BreachRRepository repository;
-    private final ShipmentRepository shipmentRepository;
 
-    public BreachDSService(
-            BreachRRepository repository,
-            ShipmentRepository shipmentRepository) {
+    public BreachDSService(BreachRRepository repository) {
         this.repository = repository;
-        this.shipmentRepository = shipmentRepository;
     }
 
-    public BreachDSEntity logBreach(
-            BreachDSEntity breach,
-            Long shipmentId) {
-
-        ShipmentRSEntity shipment = shipmentRepository.findById(shipmentId)
-                .orElseThrow(() ->
-                        new RuntimeException("Shipment not found"));
-
-        breach.setShipment(shipment);
+    public BreachDSEntity logBreach(BreachDSEntity breach) {
         return repository.save(breach);
     }
 
     public List<BreachDSEntity> getByShipment(Long shipmentId) {
-        return repository.findByShipment_Id(shipmentId);
+        return repository.findByShipmentId(shipmentId);
     }
 
     public BreachDSEntity resolve(Long id) {
@@ -34,6 +30,12 @@ public class BreachDSService {
 
         breach.setResolved(true);
         return repository.save(breach);
+    }
+
+    public BreachDSEntity getById(Long id) {
+        return repository.findById(id)
+                .orElseThrow(() ->
+                        new RuntimeException("Breach not found"));
     }
 
     public List<BreachDSEntity> getAll() {
