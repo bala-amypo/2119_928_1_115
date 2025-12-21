@@ -23,8 +23,18 @@ public class TemperatureLSCTL {
         return service.recordLog(log);
     }
 
-    @GetMapping("/shipment/{id}")
-    public List<TemperatureLSEntity> getByShipment(@PathVariable Long id) {
-        return service.getLogsByShipment(id);
+    @GetMapping("/shipment/{shipmentId}")
+    public List<TemperatureLSEntity> getByShipment(@PathVariable Long shipmentId) {
+        return service.getLogsByShipment(shipmentId);
+    }
+
+    @GetMapping("/{id}")
+    public TemperatureLSEntity getLogById(@PathVariable Long id) {
+        return service.getLogById(id);
+    }
+
+    @GetMapping
+    public List<TemperatureLSEntity> getAllLogs() {
+        return service.getAllLogs();
     }
 }
