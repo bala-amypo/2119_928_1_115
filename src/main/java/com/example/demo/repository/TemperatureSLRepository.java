@@ -7,5 +7,5 @@ import java.util.List;
 public interface TemperatureSLRepository
         extends JpaRepository<TemperatureLSEntity, Long> {
 
-    List<TemperatureLSEntity> findByShipmentId(Long shipmentId);
+    List<TemperatureLSEntity> findByShipment_Id(Long shipmentId);
 }
