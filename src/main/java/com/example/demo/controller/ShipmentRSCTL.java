@@ -18,12 +18,30 @@ public class ShipmentRSCTL {
         this.service = service;
     }
 
-    @PostMapping("/")
+    @PostMapping
     public ShipmentRSEntity createShipment(@RequestBody ShipmentRSEntity shipment) {
         return service.create(shipment);
     }
 
-    @GetMapping("/")
+    @PutMapping("/{id}/status")
+    public ShipmentRSEntity updateStatus(
+            @PathVariable Long id,
+            @RequestParam String status
+    ) {
+        return service.updateStatus(id, status);
+    }
+
+    @GetMapping("/code/{code}")
+    public ShipmentRSEntity getByCode(@PathVariable String code) {
+        return service.getByCode(code);
+    }
+
+    @GetMapping("/{id}")
+    public ShipmentRSEntity getById(@PathVariable Long id) {
+        return service.getById(id);
+    }
+
+    @GetMapping
     public List<ShipmentRSEntity> getAll() {
         return service.getAll();
     }
