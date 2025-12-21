@@ -1,44 +1,33 @@
 package com.example.demo.service;
 
-import com.example.demo.entity.AlertsEntity;
-import com.example.demo.repository.AlertRepository;
+import com.example.demo.entity.User;
+import com.example.demo.exception.ResourceNotFoundException;
+import com.example.demo.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
-public class AlertService {
+public class UserService {
 
-    private final AlertRepository repository;
+    private final UserRepository userRepository;
 
-    public AlertService(AlertRepository repository) {
-        this.repository = repository;
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
-    public AlertsEntity triggerAlert(AlertsEntity alert) {
-        return repository.save(alert);
-    }
-
-    public AlertsEntity acknowledgeAlert(Long id) {
-        AlertsEntity alert = repository.findById(id)
+    public User getUserById(Long id) {
+        return userRepository.findById(id)
                 .orElseThrow(() ->
-                        new RuntimeException("Alert not found"));
-
-        alert.setAcknowledged(true);
-        return repository.save(alert);
+                        new ResourceNotFoundException(
+                                "User not found with id: " + id
+                        )
+                );
     }
 
-    public List<AlertsEntity> getAlertsByShipment(Long shipmentId) {
-        return repository.findByShipmentId(shipmentId);
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email);
     }
 
-    public AlertsEntity getAlertById(Long id) {
-        return repository.findById(id)
-                .orElseThrow(() ->
-                        new RuntimeException("Alert not found"));
-    }
-
-    public List<AlertsEntity> getAllAlerts() {
-        return repository.findAll();
+    public User registerUser(User user) {
+        return userRepository.save(user);
     }
 }
