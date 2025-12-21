@@ -1,25 +1,21 @@
+package com.example.demo.service;
+
+import com.example.demo.entity.AlertsEntity;
+import com.example.demo.repository.AlertRepository;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
 @Service
 public class AlertService {
 
     private final AlertRepository repository;
-    private final ShipmentRepository shipmentRepository;
 
-    public AlertService(
-            AlertRepository repository,
-            ShipmentRepository shipmentRepository) {
+    public AlertService(AlertRepository repository) {
         this.repository = repository;
-        this.shipmentRepository = shipmentRepository;
     }
 
-    public AlertsEntity triggerAlert(
-            AlertsEntity alert,
-            Long shipmentId) {
-
-        ShipmentRSEntity shipment = shipmentRepository.findById(shipmentId)
-                .orElseThrow(() ->
-                        new RuntimeException("Shipment not found"));
-
-        alert.setShipment(shipment);
+    public AlertsEntity triggerAlert(AlertsEntity alert) {
         return repository.save(alert);
     }
 
@@ -33,7 +29,7 @@ public class AlertService {
     }
 
     public List<AlertsEntity> getAlertsByShipment(Long shipmentId) {
-        return repository.findByShipment_Id(shipmentId);
+        return repository.findByShipmentId(shipmentId);
     }
 
     public AlertsEntity getAlertById(Long id) {

@@ -23,6 +23,12 @@ public class TemperatureLogService {
         return repository.findByShipmentId(shipmentId);
     }
 
+    public TemperatureLSEntity getLogById(Long id) {
+        return repository.findById(id)
+                .orElseThrow(() ->
+                        new RuntimeException("Temperature log not found"));
+    }
+
     public List<TemperatureLSEntity> getAllLogs() {
         return repository.findAll();
     }
