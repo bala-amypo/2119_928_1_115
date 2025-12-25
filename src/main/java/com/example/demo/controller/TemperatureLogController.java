@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@@RestController
+@RestController
 @RequestMapping("/api/logs")
 @Tag(name = "Temperature Logs")
 public class TemperatureLogController {
