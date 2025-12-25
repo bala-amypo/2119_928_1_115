@@ -1,6 +1,6 @@
 package com.example.demo.service;
 
-import com.example.demo.entity.BreachDSEntity;
+import com.example.demo.entity.BreachRecord;
 import com.example.demo.repository.BreachRecordRepository;
 import org.springframework.stereotype.Service;
 
@@ -9,27 +9,34 @@ import java.util.List;
 @Service
 public class BreachDetectionService {
 
-    private final BreachRecordRepository repository;
+    private final BreachRecordRepository repo;
 
-    public BreachDetectionService(BreachRecordRepository repository) {
-        this.repository = repository;
+    public BreachDetectionService(BreachRecordRepository repo) {
+        this.repo = repo;
     }
 
-    public BreachDSEntity logBreach(BreachDSEntity breach) {
-        return repository.save(breach);
+    public BreachRecord logBreach(BreachRecord breach) {
+        return repo.save(breach);
     }
 
-    public List<BreachDSEntity> getBreachesByShipment(Long shipmentId) {
-        return repository.findByShipmentId(shipmentId);
+    public BreachRecord resolve(Long id) {
+        BreachRecord breach = repo.findById(id).orElse(null);
+        if (breach != null) {
+            breach.setResolved(true);
+            return repo.save(breach);
+        }
+        return null;
     }
 
-    public BreachDSEntity resolveBreach(Long id) {
-        BreachDSEntity b = repository.findById(id).orElseThrow();
-        b.setResolved(true);
-        return repository.save(b);
+    public List<BreachRecord> getByShipment(Long shipmentId) {
+        return repo.findByShipmentId(shipmentId);
     }
 
-    public List<BreachDSEntity> getAllBreaches() {
-        return repository.findAll();
+    public BreachRecord getById(Long id) {
+        return repo.findById(id).orElse(null);
+    }
+
+    public List<BreachRecord> getAll() {
+        return repo.findAll();
     }
 }

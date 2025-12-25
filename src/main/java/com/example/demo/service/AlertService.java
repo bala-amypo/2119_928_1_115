@@ -1,7 +1,7 @@
 package com.example.demo.service;
 
-import com.example.demo.entity.AlertsEntity;
-import com.example.demo.repository.AlertRepository;
+import com.example.demo.entity.AlertRecord;
+import com.example.demo.repository.AlertRecordRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,36 +9,34 @@ import java.util.List;
 @Service
 public class AlertService {
 
-    private final AlertRepository repository;
+    private final AlertRecordRepository repo;
 
-    public AlertService(AlertRepository repository) {
-        this.repository = repository;
+    public AlertService(AlertRecordRepository repo) {
+        this.repo = repo;
     }
 
-    public AlertsEntity triggerAlert(AlertsEntity alert) {
-        return repository.save(alert);
+    public AlertRecord triggerAlert(AlertRecord alert) {
+        return repo.save(alert);
     }
 
-    public AlertsEntity acknowledgeAlert(Long id) {
-        AlertsEntity alert = repository.findById(id)
-                .orElseThrow(() ->
-                        new RuntimeException("Alert not found"));
-
-        alert.setAcknowledged(true);
-        return repository.save(alert);
+    public AlertRecord acknowledgeAlert(Long id) {
+        AlertRecord alert = repo.findById(id).orElse(null);
+        if (alert != null) {
+            alert.setAcknowledged(true);
+            return repo.save(alert);
+        }
+        return null;
     }
 
-    public List<AlertsEntity> getAlertsByShipment(Long shipmentId) {
-        return repository.findByShipmentId(shipmentId);
+    public List<AlertRecord> getAlertsByShipment(Long shipmentId) {
+        return repo.findByShipmentId(shipmentId);
     }
 
-    public AlertsEntity getAlertById(Long id) {
-        return repository.findById(id)
-                .orElseThrow(() ->
-                        new RuntimeException("Alert not found"));
+    public AlertRecord getAlertById(Long id) {
+        return repo.findById(id).orElse(null);
     }
 
-    public List<AlertsEntity> getAllAlerts() {
-        return repository.findAll();
+    public List<AlertRecord> getAllAlerts() {
+        return repo.findAll();
     }
 }

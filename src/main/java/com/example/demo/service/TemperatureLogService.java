@@ -1,7 +1,7 @@
 package com.example.demo.service;
 
-import com.example.demo.entity.TemperatureLSEntity;
-import com.example.demo.repository.TemperatureSLRepository;
+import com.example.demo.entity.TemperatureSensorLog;
+import com.example.demo.repository.TemperatureSensorLogRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,27 +9,25 @@ import java.util.List;
 @Service
 public class TemperatureLogService {
 
-    private final TemperatureSLRepository repository;
+    private final TemperatureSensorLogRepository repo;
 
-    public TemperatureLogService(TemperatureSLRepository repository) {
-        this.repository = repository;
+    public TemperatureLogService(TemperatureSensorLogRepository repo) {
+        this.repo = repo;
     }
 
-    public TemperatureLSEntity recordLog(TemperatureLSEntity log) {
-        return repository.save(log);
+    public TemperatureSensorLog recordLog(TemperatureSensorLog log) {
+        return repo.save(log);
     }
 
-    public List<TemperatureLSEntity> getLogsByShipment(Long shipmentId) {
-        return repository.findByShipmentId(shipmentId);
+    public List<TemperatureSensorLog> getLogsByShipment(Long shipmentId) {
+        return repo.findByShipmentId(shipmentId);
     }
 
-    public TemperatureLSEntity getLogById(Long id) {
-        return repository.findById(id)
-                .orElseThrow(() ->
-                        new RuntimeException("Temperature log not found"));
+    public TemperatureSensorLog getLogById(Long id) {
+        return repo.findById(id).orElse(null);
     }
 
-    public List<TemperatureLSEntity> getAllLogs() {
-        return repository.findAll();
+    public List<TemperatureSensorLog> getAllLogs() {
+        return repo.findAll();
     }
 }
