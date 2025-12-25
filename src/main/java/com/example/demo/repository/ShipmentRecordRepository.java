@@ -1,10 +1,10 @@
 package com.example.demo.repository;
 
-import com.example.demo.entity.ShipmentRecord;
+import com.example.demo.entity.ShipmentRSEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ShipmentRecordRepository
-        extends JpaRepository<ShipmentRecord, Long> {
+        extends JpaRepository<ShipmentRSEntity, Long> {
 
-    ShipmentRecord findByShipmentCode(String shipmentCode);
+    ShipmentRSEntity findByShipmentCode(String code);
 }
