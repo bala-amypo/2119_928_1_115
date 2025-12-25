@@ -10,10 +10,11 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/alerts")
 @Tag(name = "Alerts")
-public class AlertsCTL {
+public class AlertRecordController {
 
     private final AlertService alertService;
 
+    // ✅ Constructor name MATCHES class name
     public AlertRecordController(AlertService alertService) {
         this.alertService = alertService;
     }
