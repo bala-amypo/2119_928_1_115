@@ -20,19 +20,13 @@ public class UserController {
         return userService.getUserById(id);
     }
 
-    /**
-     * Register new user
-     * URL: POST /api/users
-     */
+
     @PostMapping
     public User registerUser(@RequestBody User user) {
         return userService.registerUser(user);
     }
 
-    /**
-     * Get user by email
-     * URL: GET /api/users/email/{email}
-     */
+
     @GetMapping("/email/{email}")
     public User getUserByEmail(@PathVariable String email) {
         return userService.findByEmail(email);
