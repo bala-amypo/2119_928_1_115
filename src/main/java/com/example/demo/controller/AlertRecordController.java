@@ -14,7 +14,7 @@ public class AlertsCTL {
 
     private final AlertService alertService;
 
-    public AlertsCTL(AlertService alertService) {
+    public AlertRecordController(AlertService alertService) {
         this.alertService = alertService;
     }
 
