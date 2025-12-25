@@ -1,40 +1,39 @@
 package com.example.demo.service;
 
-import com.example.demo.entity.ShipmentRSEntity;
-import com.example.demo.repository.ShipmentRepository;
+import com.example.demo.entity.ShipmentRecord;
+import com.example.demo.repository.ShipmentRecordRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class ShipmentRService {
+public class ShipmentRecordService {
 
-    private final ShipmentRepository repository;
+    private final ShipmentRecordRepository repository;
 
-    public ShipmentRService(ShipmentRepository repository) {
+    public ShipmentRecordService(ShipmentRecordRepository repository) {
         this.repository = repository;
     }
 
-    public ShipmentRSEntity create(ShipmentRSEntity shipment) {
+    public ShipmentRecord createShipment(ShipmentRecord shipment) {
         return repository.save(shipment);
     }
 
-    public ShipmentRSEntity getById(Long id) {
+    public ShipmentRecord getShipmentById(Long id) {
         return repository.findById(id)
-                .orElseThrow(() ->
-                        new RuntimeException("Shipment not found"));
+                .orElseThrow(() -> new RuntimeException("Shipment not found"));
     }
 
-    public ShipmentRSEntity getByCode(String code) {
+    public ShipmentRecord getShipmentByCode(String code) {
         return repository.findByShipmentCode(code);
     }
 
-    public List<ShipmentRSEntity> getAll() {
+    public List<ShipmentRecord> getAllShipments() {
         return repository.findAll();
     }
 
-    public ShipmentRSEntity updateStatus(Long id, String status) {
-        ShipmentRSEntity shipment = getById(id);
+    public ShipmentRecord updateStatus(Long id, String status) {
+        ShipmentRecord shipment = getShipmentById(id);
         shipment.setStatus(status);
         return repository.save(shipment);
     }
