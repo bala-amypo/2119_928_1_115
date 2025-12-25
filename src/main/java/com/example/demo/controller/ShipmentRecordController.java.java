@@ -10,11 +10,11 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/shipments")
 @Tag(name = "Shipments")
-public class ShipmentRSCTL {
+public class ShipmentRecordController {
 
     private final ShipmentRService service;
 
-    public ShipmentRSCTL(ShipmentRService service) {
+    public ShipmentRecordController(ShipmentRService service) {
         this.service = service;
     }
 
@@ -26,8 +26,7 @@ public class ShipmentRSCTL {
     @PutMapping("/{id}/status")
     public ShipmentRSEntity updateStatus(
             @PathVariable Long id,
-            @RequestParam String status
-    ) {
+            @RequestParam String status) {
         return service.updateStatus(id, status);
     }
 

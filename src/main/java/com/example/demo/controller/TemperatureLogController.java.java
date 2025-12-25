@@ -10,11 +10,11 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/logs")
 @Tag(name = "Temperature Logs")
-public class TemperatureLSCTL {
+public class TemperatureLogController {
 
     private final TemperatureLogService service;
 
-    public TemperatureLSCTL(TemperatureLogService service) {
+    public TemperatureLogController(TemperatureLogService service) {
         this.service = service;
     }
 
@@ -29,12 +29,12 @@ public class TemperatureLSCTL {
     }
 
     @GetMapping("/{id}")
-    public TemperatureLSEntity getLogById(@PathVariable Long id) {
+    public TemperatureLSEntity getById(@PathVariable Long id) {
         return service.getLogById(id);
     }
 
     @GetMapping
-    public List<TemperatureLSEntity> getAllLogs() {
+    public List<TemperatureLSEntity> getAll() {
         return service.getAllLogs();
     }
 }

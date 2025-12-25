@@ -10,36 +10,36 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/breaches")
 @Tag(name = "Breaches")
-public class BreachDSCTL {
+public class BreachRecordController {
 
-    private final BreachDSService breachService;
+    private final BreachDSService service;
 
-    public BreachDSCTL(BreachDSService breachService) {
-        this.breachService = breachService;
+    public BreachRecordController(BreachDSService service) {
+        this.service = service;
     }
 
     @PostMapping
-    public BreachDSEntity createBreach(@RequestBody BreachDSEntity breach) {
-        return breachService.logBreach(breach);
-    }
-
-    @GetMapping("/shipment/{shipmentId}")
-    public List<BreachDSEntity> getByShipment(@PathVariable Long shipmentId) {
-        return breachService.getByShipment(shipmentId);
+    public BreachDSEntity create(@RequestBody BreachDSEntity breach) {
+        return service.logBreach(breach);
     }
 
     @PutMapping("/{id}/resolve")
     public BreachDSEntity resolve(@PathVariable Long id) {
-        return breachService.resolve(id);
+        return service.resolve(id);
+    }
+
+    @GetMapping("/shipment/{shipmentId}")
+    public List<BreachDSEntity> getByShipment(@PathVariable Long shipmentId) {
+        return service.getByShipment(shipmentId);
     }
 
     @GetMapping("/{id}")
     public BreachDSEntity getById(@PathVariable Long id) {
-        return breachService.getById(id);
+        return service.getById(id);
     }
 
     @GetMapping
     public List<BreachDSEntity> getAll() {
-        return breachService.getAll();
+        return service.getAll();
     }
 }
