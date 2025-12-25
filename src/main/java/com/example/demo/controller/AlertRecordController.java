@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.entity.AlertsEntity;
+import com.example.demo.entity.AlertRecord;
 import com.example.demo.service.AlertService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;

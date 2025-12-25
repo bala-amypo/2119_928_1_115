@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
-import com.example.demo.entity.ShipmentRSEntity;
-import com.example.demo.service.ShipmentRService;
+import com.example.demo.entity.ShipmentRecord;
+import com.example.demo.service.ShipmentRecordService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
 

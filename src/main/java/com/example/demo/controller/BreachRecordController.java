@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
-import com.example.demo.entity.BreachDSEntity;
-import com.example.demo.service.BreachDSService;
+import com.example.demo.entity.BreachRecord;
+import com.example.demo.service.BreachDetectionService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
 

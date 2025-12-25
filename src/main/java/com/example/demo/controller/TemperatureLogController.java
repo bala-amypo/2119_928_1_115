@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.entity.TemperatureLSEntity;
+import com.example.demo.entity.TemperatureSensorLog;
 import com.example.demo.service.TemperatureLogService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
