@@ -14,33 +14,32 @@ public class AlertRecordController {
 
     private final AlertService alertService;
 
-    // ✅ Constructor name MATCHES class name
     public AlertRecordController(AlertService alertService) {
         this.alertService = alertService;
     }
 
     @PostMapping
-    public AlertsEntity triggerAlert(@RequestBody AlertsEntity alert) {
+    public AlertRecord triggerAlert(@RequestBody AlertRecord alert) {
         return alertService.triggerAlert(alert);
     }
 
     @PutMapping("/{id}/acknowledge")
-    public AlertsEntity acknowledge(@PathVariable Long id) {
+    public AlertRecord acknowledge(@PathVariable Long id) {
         return alertService.acknowledgeAlert(id);
     }
 
     @GetMapping("/shipment/{shipmentId}")
-    public List<AlertsEntity> getByShipment(@PathVariable Long shipmentId) {
+    public List<AlertRecord> getByShipment(@PathVariable Long shipmentId) {
         return alertService.getAlertsByShipment(shipmentId);
     }
 
     @GetMapping("/{id}")
-    public AlertsEntity getById(@PathVariable Long id) {
+    public AlertRecord getById(@PathVariable Long id) {
         return alertService.getAlertById(id);
     }
 
     @GetMapping
-    public List<AlertsEntity> getAll() {
+    public List<AlertRecord> getAll() {
         return alertService.getAllAlerts();
     }
 }

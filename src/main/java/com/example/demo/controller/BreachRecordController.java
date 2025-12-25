@@ -12,34 +12,34 @@ import java.util.List;
 @Tag(name = "Breaches")
 public class BreachRecordController {
 
-    private final BreachDSService service;
+    private final BreachDetectionService service;
 
-    public BreachRecordController(BreachDSService service) {
+    public BreachRecordController(BreachDetectionService service) {
         this.service = service;
     }
 
     @PostMapping
-    public BreachDSEntity create(@RequestBody BreachDSEntity breach) {
+    public BreachRecord create(@RequestBody BreachRecord breach) {
         return service.logBreach(breach);
     }
 
     @PutMapping("/{id}/resolve")
-    public BreachDSEntity resolve(@PathVariable Long id) {
+    public BreachRecord resolve(@PathVariable Long id) {
         return service.resolve(id);
     }
 
     @GetMapping("/shipment/{shipmentId}")
-    public List<BreachDSEntity> getByShipment(@PathVariable Long shipmentId) {
+    public List<BreachRecord> getByShipment(@PathVariable Long shipmentId) {
         return service.getByShipment(shipmentId);
     }
 
     @GetMapping("/{id}")
-    public BreachDSEntity getById(@PathVariable Long id) {
+    public BreachRecord getById(@PathVariable Long id) {
         return service.getById(id);
     }
 
     @GetMapping
-    public List<BreachDSEntity> getAll() {
+    public List<BreachRecord> getAll() {
         return service.getAll();
     }
 }

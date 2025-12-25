@@ -12,36 +12,36 @@ import java.util.List;
 @Tag(name = "Shipments")
 public class ShipmentRecordController {
 
-    private final ShipmentRService service;
+    private final ShipmentRecordService service;
 
-    public ShipmentRecordController(ShipmentRService service) {
+    public ShipmentRecordController(ShipmentRecordService service) {
         this.service = service;
     }
 
     @PostMapping
-    public ShipmentRSEntity createShipment(@RequestBody ShipmentRSEntity shipment) {
+    public ShipmentRecord createShipment(@RequestBody ShipmentRecord shipment) {
         return service.create(shipment);
     }
 
     @PutMapping("/{id}/status")
-    public ShipmentRSEntity updateStatus(
+    public ShipmentRecord updateStatus(
             @PathVariable Long id,
             @RequestParam String status) {
         return service.updateStatus(id, status);
     }
 
     @GetMapping("/code/{code}")
-    public ShipmentRSEntity getByCode(@PathVariable String code) {
+    public ShipmentRecord getByCode(@PathVariable String code) {
         return service.getByCode(code);
     }
 
     @GetMapping("/{id}")
-    public ShipmentRSEntity getById(@PathVariable Long id) {
+    public ShipmentRecord getById(@PathVariable Long id) {
         return service.getById(id);
     }
 
     @GetMapping
-    public List<ShipmentRSEntity> getAll() {
+    public List<ShipmentRecord> getAll() {
         return service.getAll();
     }
 }
