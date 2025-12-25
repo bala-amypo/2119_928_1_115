@@ -19,22 +19,22 @@ public class TemperatureLogController {
     }
 
     @PostMapping
-    public TemperatureLSEntity recordLog(@RequestBody TemperatureLSEntity log) {
+    public TemperatureSensorLog recordLog(@RequestBody TemperatureSensorLog log) {
         return service.recordLog(log);
     }
 
     @GetMapping("/shipment/{shipmentId}")
-    public List<TemperatureLSEntity> getByShipment(@PathVariable Long shipmentId) {
+    public List<TemperatureSensorLog> getByShipment(@PathVariable Long shipmentId) {
         return service.getLogsByShipment(shipmentId);
     }
 
     @GetMapping("/{id}")
-    public TemperatureLSEntity getById(@PathVariable Long id) {
+    public TemperatureSensorLog getById(@PathVariable Long id) {
         return service.getLogById(id);
     }
 
     @GetMapping
-    public List<TemperatureLSEntity> getAll() {
+    public List<TemperatureSensorLog> getAll() {
         return service.getAllLogs();
     }
 }
