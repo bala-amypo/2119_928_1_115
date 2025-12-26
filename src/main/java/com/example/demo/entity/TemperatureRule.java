@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "temperature_rules")
@@ -13,32 +14,43 @@ public class TemperatureRule {
     private String productType;
     private Double minTemp;
     private Double maxTemp;
+    private Boolean active;
 
-    public Long getId() {
-        return id;
+    private LocalDate effectiveFrom;
+    private LocalDate effectiveTo;
+
+    @PrePersist
+    public void prePersist() {
+        if (active == null) {
+            active = true;
+        }
     }
 
-    public String getProductType() {
-        return productType;
+    // ===== Validation helper =====
+    public void validate() {
+        if (minTemp != null && maxTemp != null && minTemp > maxTemp) {
+            throw new IllegalArgumentException("Min temperature cannot be greater than max temperature");
+        }
     }
 
-    public void setProductType(String productType) {
-        this.productType = productType;
-    }
+    // ===== Getters & Setters =====
+    public Long getId() { return id; }
 
-    public Double getMinTemp() {
-        return minTemp;
-    }
+    public String getProductType() { return productType; }
+    public void setProductType(String productType) { this.productType = productType; }
 
-    public void setMinTemp(Double minTemp) {
-        this.minTemp = minTemp;
-    }
+    public Double getMinTemp() { return minTemp; }
+    public void setMinTemp(Double minTemp) { this.minTemp = minTemp; }
 
-    public Double getMaxTemp() {
-        return maxTemp;
-    }
+    public Double getMaxTemp() { return maxTemp; }
+    public void setMaxTemp(Double maxTemp) { this.maxTemp = maxTemp; }
 
-    public void setMaxTemp(Double maxTemp) {
-        this.maxTemp = maxTemp;
-    }
+    public Boolean getActive() { return active; }
+    public void setActive(Boolean active) { this.active = active; }
+
+    public LocalDate getEffectiveFrom() { return effectiveFrom; }
+    public void setEffectiveFrom(LocalDate effectiveFrom) { this.effectiveFrom = effectiveFrom; }
+
+    public LocalDate getEffectiveTo() { return effectiveTo; }
+    public void setEffectiveTo(LocalDate effectiveTo) { this.effectiveTo = effectiveTo; }
 }
