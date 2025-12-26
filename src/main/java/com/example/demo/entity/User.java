@@ -25,6 +25,17 @@ public class User {
         }
     }
 
+    // 🔥 REQUIRED FOR TESTS
+    public User(Long id, String fullName, String email, String password, String role) {
+        this.id = id;
+        this.fullName = fullName;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+    }
+
+    // Default constructor (keep it)
+    public User() {}
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
