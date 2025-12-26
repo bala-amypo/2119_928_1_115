@@ -5,6 +5,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 @WebServlet(urlPatterns = "/simple-status")
 public class SimpleStatusServlet extends HttpServlet {
@@ -12,9 +13,7 @@ public class SimpleStatusServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws IOException {
-        resp.setStatus(HttpServletResponse.SC_OK);
-        resp.getWriter().write(
-            "Cold Chain Temperature Breach Alert System is running"
-        );
-    }
-}
+
+        // Required by tests
+        resp.setContentType("text/plain");
+        re
