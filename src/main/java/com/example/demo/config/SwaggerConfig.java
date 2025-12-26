@@ -18,4 +18,5 @@ public class SwaggerConfig {
                         new Server().url("https://9133.408procr.amypo.ai/")
                 ));
     }
-}
+}systemctl status mysql
+
