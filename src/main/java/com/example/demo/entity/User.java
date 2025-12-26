@@ -18,12 +18,13 @@ public class User {
     private LocalDateTime createdAt;
 
     @PrePersist
-    void init() {
+    public void prePersist() {
         this.createdAt = LocalDateTime.now();
         if (this.role == null) {
             this.role = "MONITOR";
         }
     }
+
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
