@@ -1,42 +1,17 @@
 package com.example.demo.service;
 
 import com.example.demo.entity.ShipmentRecord;
-import com.example.demo.repository.ShipmentRecordRepository;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
-@Service
-public class ShipmentRecordService {
+public interface ShipmentRecordService {
 
-    private final ShipmentRecordRepository repo;
+    ShipmentRecord createShipment(ShipmentRecord shipment);
 
-    public ShipmentRecordService(ShipmentRecordRepository repo) {
-        this.repo = repo;
-    }
+    ShipmentRecord updateShipmentStatus(Long id, String status);
 
-    public ShipmentRecord create(ShipmentRecord shipment) {
-        return repo.save(shipment);
-    }
+    Optional<ShipmentRecord> getShipmentByCode(String code);
 
-    public ShipmentRecord updateStatus(Long id, String status) {
-        ShipmentRecord shipment = repo.findById(id).orElse(null);
-        if (shipment != null) {
-            shipment.setStatus(status);
-            return repo.save(shipment);
-        }
-        return null;
-    }
-
-    public ShipmentRecord getByCode(String code) {
-        return repo.findByCode(code);
-    }
-
-    public ShipmentRecord getById(Long id) {
-        return repo.findById(id).orElse(null);
-    }
-
-    public List<ShipmentRecord> getAll() {
-        return repo.findAll();
-    }
+    List<ShipmentRecord> getAllShipments();
 }

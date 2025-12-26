@@ -1,25 +1,16 @@
 package com.example.demo.service;
 
 import com.example.demo.entity.TemperatureRule;
-import com.example.demo.repository.TemperatureRuleRepository;
-import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
-@Service
-public class TemperatureRuleService {
+public interface TemperatureRuleService {
 
-    private final TemperatureRuleRepository repository;
+    TemperatureRule createRule(TemperatureRule rule);
 
-    public TemperatureRuleService(TemperatureRuleRepository repository) {
-        this.repository = repository;
-    }
+    List<TemperatureRule> getActiveRules();
 
-    public TemperatureRule createRule(TemperatureRule rule) {
-        return repository.save(rule);
-    }
-
-    public List<TemperatureRule> getAllRules() {
-        return repository.findAll();
-    }
+    Optional<TemperatureRule> getRuleForProduct(String product, LocalDate date);
 }
