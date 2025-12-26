@@ -21,10 +21,11 @@ public class BreachRecord {
     private LocalDateTime detectedAt;
 
     @PrePersist
-    void init() {
+    public void prePersist() {
         this.detectedAt = LocalDateTime.now();
         this.resolved = false;
     }
+
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }

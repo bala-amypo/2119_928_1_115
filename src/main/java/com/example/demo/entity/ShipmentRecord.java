@@ -22,10 +22,12 @@ public class ShipmentRecord {
     private LocalDateTime createdAt;
 
     @PrePersist
-    void init() {
+    public void prePersist() {
         this.createdAt = LocalDateTime.now();
         this.status = "IN_TRANSIT";
     }
+
+
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }

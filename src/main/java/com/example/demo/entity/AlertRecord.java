@@ -19,10 +19,11 @@ public class AlertRecord {
     private LocalDateTime sentAt;
 
     @PrePersist
-    void init() {
+    public void prePersist() {
         this.sentAt = LocalDateTime.now();
         this.acknowledged = false;
     }
+
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }

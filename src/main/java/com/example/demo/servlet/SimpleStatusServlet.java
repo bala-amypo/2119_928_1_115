@@ -12,8 +12,8 @@ import java.io.PrintWriter;
 public class SimpleStatusServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-            throws IOException {
+    public void doGet(HttpServletRequest req, HttpServletResponse resp)
+        throws IOException {
 
         // Required by test suite
         resp.setContentType("text/plain");
