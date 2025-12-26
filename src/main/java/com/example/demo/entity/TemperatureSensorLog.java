@@ -1,56 +1,43 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "temperature_rules")
-public class TemperatureRule {
+@Table(name = "temperature_logs")
+public class TemperatureSensorLog {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String productType;
-    private Double minTemp;
-    private Double maxTemp;
-    private Boolean active;
-
-    private LocalDate effectiveFrom;
-    private LocalDate effectiveTo;
+    private Long shipmentId;
+    private String sensorId;
+    private Double temperatureValue;
+    private String location;
+    private LocalDateTime recordedAt;
 
     @PrePersist
-    public void prePersist() {
-        if (active == null) {
-            active = true;
-        }
+    void init() {
+        this.recordedAt = LocalDateTime.now();
     }
 
-    // ===== Validation helper =====
-    public void validate() {
-        if (minTemp != null && maxTemp != null && minTemp > maxTemp) {
-            throw new IllegalArgumentException("Min temperature cannot be greater than max temperature");
-        }
-    }
-
-    // ===== Getters & Setters =====
     public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public String getProductType() { return productType; }
-    public void setProductType(String productType) { this.productType = productType; }
+    public Long getShipmentId() { return shipmentId; }
+    public void setShipmentId(Long shipmentId) { this.shipmentId = shipmentId; }
 
-    public Double getMinTemp() { return minTemp; }
-    public void setMinTemp(Double minTemp) { this.minTemp = minTemp; }
+    public String getSensorId() { return sensorId; }
+    public void setSensorId(String sensorId) { this.sensorId = sensorId; }
 
-    public Double getMaxTemp() { return maxTemp; }
-    public void setMaxTemp(Double maxTemp) { this.maxTemp = maxTemp; }
+    public Double getTemperatureValue() { return temperatureValue; }
+    public void setTemperatureValue(Double temperatureValue) {
+        this.temperatureValue = temperatureValue;
+    }
 
-    public Boolean getActive() { return active; }
-    public void setActive(Boolean active) { this.active = active; }
+    public String getLocation() { return location; }
+    public void setLocation(String location) { this.location = location; }
 
-    public LocalDate getEffectiveFrom() { return effectiveFrom; }
-    public void setEffectiveFrom(LocalDate effectiveFrom) { this.effectiveFrom = effectiveFrom; }
-
-    public LocalDate getEffectiveTo() { return effectiveTo; }
-    public void setEffectiveTo(LocalDate effectiveTo) { this.effectiveTo = effectiveTo; }
+    public LocalDateTime getRecordedAt() { return recordedAt; }
 }
