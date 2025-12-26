@@ -14,18 +14,12 @@ public class UserController {
         this.userService = userService;
     }
 
-  
-    @GetMapping("/{id}")
-    public User getUserById(@PathVariable Long id) {
-        return userService.getUserById(id);
-    }
-
+    // Only keep methods that exist in UserService
 
     @PostMapping
     public User registerUser(@RequestBody User user) {
         return userService.registerUser(user);
     }
-
 
     @GetMapping("/email/{email}")
     public User getUserByEmail(@PathVariable String email) {
