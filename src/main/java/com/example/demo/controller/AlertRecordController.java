@@ -2,44 +2,27 @@ package com.example.demo.controller;
 
 import com.example.demo.entity.AlertRecord;
 import com.example.demo.service.AlertService;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/alerts")
-@Tag(name = "Alerts")
+@RequestMapping("/alerts")
 public class AlertRecordController {
 
-    private final AlertService alertService;
+    private final AlertService service;
 
-    public AlertRecordController(AlertService alertService) {
-        this.alertService = alertService;
+    public AlertRecordController(AlertService service) {
+        this.service = service;
     }
 
     @PostMapping
     public AlertRecord triggerAlert(@RequestBody AlertRecord alert) {
-        return alertService.triggerAlert(alert);
-    }
-
-    @PutMapping("/{id}/acknowledge")
-    public AlertRecord acknowledge(@PathVariable Long id) {
-        return alertService.acknowledgeAlert(id);
+        return service.triggerAlert(alert);
     }
 
     @GetMapping("/shipment/{shipmentId}")
-    public List<AlertRecord> getByShipment(@PathVariable Long shipmentId) {
-        return alertService.getAlertsByShipment(shipmentId);
-    }
-
-    @GetMapping("/{id}")
-    public AlertRecord getById(@PathVariable Long id) {
-        return alertService.getAlertById(id);
-    }
-
-    @GetMapping
-    public List<AlertRecord> getAll() {
-        return alertService.getAllAlerts();
+    public List<AlertRecord> getAlertsByShipment(@PathVariable Long shipmentId) {
+        return service.getAlertsByShipment(shipmentId);
     }
 }
