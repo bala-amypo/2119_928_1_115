@@ -2,14 +2,12 @@ package com.example.demo.controller;
 
 import com.example.demo.entity.ShipmentRecord;
 import com.example.demo.service.ShipmentRecordService;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/shipments")
-@Tag(name = "Shipments")
+@RequestMapping("/shipments")
 public class ShipmentRecordController {
 
     private final ShipmentRecordService service;
@@ -20,28 +18,23 @@ public class ShipmentRecordController {
 
     @PostMapping
     public ShipmentRecord createShipment(@RequestBody ShipmentRecord shipment) {
-        return service.create(shipment);
+        return service.createShipment(shipment);
     }
 
     @PutMapping("/{id}/status")
-    public ShipmentRecord updateStatus(
+    public ShipmentRecord updateShipmentStatus(
             @PathVariable Long id,
             @RequestParam String status) {
-        return service.updateStatus(id, status);
+        return service.updateShipmentStatus(id, status);
     }
 
     @GetMapping("/code/{code}")
-    public ShipmentRecord getByCode(@PathVariable String code) {
-        return service.getByCode(code);
-    }
-
-    @GetMapping("/{id}")
-    public ShipmentRecord getById(@PathVariable Long id) {
-        return service.getById(id);
+    public ShipmentRecord getShipmentByCode(@PathVariable String code) {
+        return service.getShipmentByCode(code).orElse(null);
     }
 
     @GetMapping
-    public List<ShipmentRecord> getAll() {
-        return service.getAll();
+    public List<ShipmentRecord> getAllShipments() {
+        return service.getAllShipments();
     }
 }
