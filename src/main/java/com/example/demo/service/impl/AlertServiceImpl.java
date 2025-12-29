@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service   // ⭐ THIS IS MANDATORY
+@Service
 public class AlertServiceImpl implements AlertService {
 
     private final AlertRecordRepository repo;
